@@ -1,0 +1,5 @@
+{
+  "admins": [
+    { "id": "a001", "name": "Admin User", "email": "admin@jobportal.com", "password": "admin123" }
+  ]
+}

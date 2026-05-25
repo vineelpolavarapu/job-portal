@@ -1,0 +1,974 @@
+/* ================================================
+   user/style.css — Job Portal User Styles
+   Shared by: login.html | register.html | jobs.html | job-detail.html
+   The USER PORTAL is the primary experience of this application.
+   ================================================ */
+
+
+/* ================================================
+   SECTION 1: CSS Variables & Design Tokens
+   ================================================ */
+
+:root {
+  --primary:       #0ea5e9;   /* sky blue — CTAs, links, highlights */
+  --primary-dark:  #0284c7;   /* hover state for primary */
+  --accent:        #10b981;   /* emerald — salary, save, success */
+  --accent-dark:   #059669;   /* hover state for accent */
+  --bg:            #f1f5f9;   /* page background */
+  --surface:       #ffffff;   /* card background */
+  --text:          #1e293b;   /* primary text */
+  --text-muted:    #64748b;   /* secondary text, placeholders */
+  --border:        #e2e8f0;   /* dividers, input borders */
+  --navbar:        #0f172a;   /* dark navy navbar */
+  --danger:        #ef4444;   /* errors */
+  --warn:          #f59e0b;   /* medium password strength */
+
+  --radius:        8px;
+  --shadow:        0 1px 3px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md:     0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+  --shadow-lg:     0 10px 15px rgba(0,0,0,0.08), 0 4px 6px rgba(0,0,0,0.05);
+}
+
+
+/* ================================================
+   SECTION 2: Reset & Base Styles
+   ================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+
+/* ================================================
+   SECTION 3: Navbar — User Portal
+   Premium feel: gradient left accent + bold brand
+   ================================================ */
+
+.navbar {
+  background: var(--navbar);
+  height: 64px;                       /* slightly taller than admin for more presence */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  border-bottom: 2px solid var(--primary); /* colored bottom accent line */
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar-brand svg {
+  width: 26px;
+  height: 26px;
+  fill: var(--primary);
+  flex-shrink: 0;
+}
+
+.navbar-brand span {
+  font-size: 1.1875rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+/* Thin vertical divider between brand and back link */
+.navbar-divider {
+  width: 1px;
+  height: 24px;
+  background: #334155;
+}
+
+/* Back-to-jobs link inside navbar (job-detail page) */
+.back-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.15s;
+}
+
+.back-link:hover { color: #e2e8f0; }
+
+.back-link svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-name {
+  color: #cbd5e1;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+
+/* ================================================
+   SECTION 4: Buttons
+   ================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+  text-decoration: none;
+  line-height: 1;
+}
+
+/* Outline light — navbar logout */
+.btn-outline-light {
+  background: transparent;
+  color: #cbd5e1;
+  border: 1px solid #334155;
+}
+
+.btn-outline-light:hover {
+  background: #1e293b;
+  color: #fff;
+}
+
+/* Primary blue — login/register submit */
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  width: 100%;
+  padding: 11px 20px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.btn-primary:hover    { background: var(--primary-dark); box-shadow: 0 4px 12px rgba(14,165,233,0.3); }
+.btn-primary:active   { transform: scale(0.98); }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* View Details button on job cards */
+.btn-view {
+  background: var(--primary);
+  color: #fff;
+  padding: 7px 16px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s;
+  font-family: inherit;
+}
+
+.btn-view:hover { background: var(--primary-dark); box-shadow: 0 4px 10px rgba(14,165,233,0.25); }
+
+/* Clear filters ghost button in sidebar */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  width: 100%;
+  justify-content: center;
+  padding: 9px;
+  font-size: 0.875rem;
+}
+
+.btn-ghost:hover {
+  background: #f8fafc;
+  color: var(--text);
+}
+
+/* Save Job button on detail page */
+.save-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 13px;
+  font-size: 0.9375rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+  font-family: inherit;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.save-btn:hover:not(:disabled) { background: var(--accent-dark); box-shadow: 0 4px 12px rgba(16,185,129,0.3); }
+.save-btn:active:not(:disabled) { transform: scale(0.98); }
+.save-btn:disabled {
+  background: #6ee7b7;
+  cursor: not-allowed;
+  opacity: 0.85;
+}
+
+
+/* ================================================
+   SECTION 5: Auth Pages — Login & Register
+   Centered card layouts for auth flows
+   ================================================ */
+
+/* Full-viewport centered wrapper used by login and register page sections */
+.auth-center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: var(--bg);
+}
+
+/* Wrapper constrains width */
+.login-wrapper,
+.register-wrapper {
+  width: 100%;
+  max-width: 420px;
+}
+
+.register-wrapper { max-width: 460px; }
+
+/* Brand logo area above the card */
+.brand {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.brand-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--navbar);
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 14px rgba(15,23,42,0.3);
+}
+
+.brand-icon svg {
+  width: 30px;
+  height: 30px;
+  fill: var(--primary);
+}
+
+.brand h1 {
+  font-size: 1.625rem;
+  font-weight: 800;
+  color: var(--navbar);
+  letter-spacing: -0.03em;
+}
+
+/* "Find Your Dream Job" tagline */
+.brand .tagline {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  margin-top: 5px;
+}
+
+/* Card containing the form */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 36px;
+  border: 1px solid var(--border);
+}
+
+.card h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--text);
+}
+
+/* Form field group */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.form-group input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--surface);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+}
+
+.form-group input.input-error { border-color: var(--danger); }
+
+/* Field-level inline error */
+.error-msg {
+  display: none;
+  color: var(--danger);
+  font-size: 0.8125rem;
+  margin-top: 5px;
+}
+
+.error-msg.visible { display: block; }
+
+/* Global alert boxes */
+.global-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: var(--danger);
+  font-size: 0.875rem;
+  margin-bottom: 18px;
+  display: none;
+}
+
+.global-error.visible { display: block; }
+
+.global-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: #15803d;
+  font-size: 0.875rem;
+  margin-bottom: 18px;
+  display: none;
+}
+
+.global-success.visible { display: block; }
+
+/* "Already have an account?" link below card */
+.register-link,
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.register-link a,
+.login-link a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-link a:hover,
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Password strength meter text */
+.password-strength        { font-size: 0.8125rem; margin-top: 4px; }
+.password-strength span   { font-weight: 600; }
+.strength-weak            { color: var(--danger); }
+.strength-medium          { color: var(--warn); }
+.strength-strong          { color: var(--accent); }
+
+
+/* ================================================
+   SECTION 6: Jobs Page — Hero Banner
+   Wide welcoming banner above the sidebar+grid layout
+   Highlights the user portal as the main experience
+   ================================================ */
+
+.jobs-hero {
+  margin-top: 64px;                   /* offset fixed navbar */
+  background: linear-gradient(135deg, var(--navbar) 0%, #1e3a5f 100%);
+  padding: 32px 28px;
+  color: #fff;
+}
+
+.jobs-hero h1 {
+  font-size: 1.625rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+}
+
+.jobs-hero p {
+  color: #94a3b8;
+  font-size: 0.9375rem;
+}
+
+
+/* ================================================
+   SECTION 7: Jobs Page — Sidebar + Grid Layout
+   Left sidebar for filters, right area for job cards
+   ================================================ */
+
+/* Outer flex container — sidebar left, content right */
+.layout {
+  display: flex;
+  min-height: calc(100vh - 64px);
+}
+
+/* Filter sidebar — sticks below the fixed navbar when scrolling */
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 24px 20px;
+  position: sticky;
+  top: 64px;                           /* sticks right below the 64px navbar */
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+/* Each filter block (label + input) */
+.filter-group {
+  margin-bottom: 18px;
+}
+
+.filter-group label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.filter-group input,
+.filter-group select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--surface);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.12);
+}
+
+/* Dropdown arrow */
+.filter-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='%2364748b'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 32px;
+}
+
+/* Thin horizontal rule between filters and results count */
+.sidebar-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 18px 0;
+}
+
+/* "X jobs found" counter below filters */
+.results-count {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+/* Main job grid area */
+.main-content {
+  flex: 1;
+  padding: 28px;
+  min-width: 0;
+}
+
+.content-header {
+  margin-bottom: 24px;
+}
+
+.content-header h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.content-header p {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin-top: 3px;
+}
+
+
+/* ================================================
+   SECTION 8: Job Cards
+   Premium card design for the 3-column grid
+   ================================================ */
+
+/* 3-column responsive grid */
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Single job card */
+.job-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: pointer;
+  border-top: 3px solid transparent;  /* colored accent on hover */
+}
+
+.job-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+  border-top-color: var(--primary);   /* reveals blue top border on hover */
+}
+
+/* Top row: title + type badge */
+.job-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.job-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.job-company {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+/* Role + other badges row */
+.job-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Icon + text metadata rows (location, experience) */
+.job-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.job-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.job-meta-row svg {
+  width: 14px;
+  height: 14px;
+  fill: #94a3b8;
+  flex-shrink: 0;
+}
+
+/* 2-line truncated summary */
+.job-summary {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  min-height: 2.6em;
+}
+
+/* Footer: salary left, CTA button right */
+.job-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.job-salary {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+
+/* ================================================
+   SECTION 9: Badges & Skill Tags
+   Pill labels used on cards and job detail
+   ================================================ */
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Job type badge — Full-Time, Part-Time, etc. */
+.badge-type     { background: #e0f2fe; color: #0369a1; }
+
+/* Role / department badge */
+.badge-role     { background: #f0fdf4; color: #15803d; }
+
+/* Location badge (on job detail) */
+.badge-location { background: #fef3c7; color: #b45309; }
+
+/* Active / inactive status badge */
+.badge-active   { background: #dcfce7; color: #15803d; }
+.badge-inactive { background: #f1f5f9; color: var(--text-muted); }
+
+/* Individual skill tags on job detail sidebar */
+.skill-tag {
+  background: #e0f2fe;
+  color: #0369a1;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+/* Wrapping container for multiple skill tags */
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+
+/* ================================================
+   SECTION 10: Job Detail Page
+   Full-width page with main content + right sidebar
+   ================================================ */
+
+/* Page wrapper below navbar */
+.main {
+  margin-top: 64px;
+  padding: 32px 28px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Two-column: left (content) + right (meta sidebar) */
+.detail-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Job title + company header card */
+.job-header {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+  margin-bottom: 20px;
+  border-top: 4px solid var(--primary);  /* strong blue accent on job detail header */
+}
+
+.job-header-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Large job title on detail page */
+.detail-layout .job-title {
+  font-size: 1.625rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.detail-layout .job-company {
+  font-size: 1.0625rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+/* Section cards: Summary, Responsibilities, Benefits */
+.section-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px 28px;
+  margin-bottom: 20px;
+}
+
+.section-card h2 {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-card h2 svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--primary);
+}
+
+.summary-text {
+  font-size: 0.9375rem;
+  color: var(--text);
+  line-height: 1.75;
+}
+
+/* Responsibilities / Benefits bullet list */
+.detail-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9375rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* Custom blue dot bullet */
+.detail-list li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--primary);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+
+/* ================================================
+   SECTION 11: Meta Card (Job Detail Sidebar)
+   Sticky right-side card with key job facts + Save button
+   ================================================ */
+
+.meta-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: 24px;
+  position: sticky;
+  top: 80px;
+  border: 1px solid var(--border);
+}
+
+.meta-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* A label-value pair inside the meta card */
+.meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.meta-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.meta-value {
+  font-size: 0.9375rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Salary value — emphasized in green */
+.meta-value.salary {
+  color: var(--accent);
+  font-size: 1.125rem;
+  font-weight: 800;
+}
+
+/* Horizontal rule inside meta card */
+.meta-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 16px 0;
+}
+
+
+/* ================================================
+   SECTION 12: Empty States
+   Centered placeholder when no jobs match filters
+   ================================================ */
+
+.empty-state {
+  text-align: center;
+  padding: 80px 24px;
+  color: var(--text-muted);
+  grid-column: 1 / -1;
+}
+
+.empty-state svg {
+  width: 64px;
+  height: 64px;
+  fill: #cbd5e1;
+  margin-bottom: 16px;
+}
+
+.empty-state h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.empty-state p { font-size: 0.9375rem; }
+
+/* Job not found (job-detail page) */
+.not-found {
+  text-align: center;
+  padding: 80px 24px;
+  color: var(--text-muted);
+}
+
+.not-found h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.not-found p   { margin-bottom: 24px; }
+.not-found a   { color: var(--primary); text-decoration: none; font-weight: 600; }
+
+
+/* ================================================
+   SECTION 13: Responsive — Breakpoints
+   ================================================ */
+
+/* Large screens: 3-column grid intact */
+@media (max-width: 1200px) {
+  .jobs-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Medium screens: hide sidebar, 2-col grid */
+@media (max-width: 900px) {
+  .sidebar           { display: none; }
+  .jobs-grid         { grid-template-columns: repeat(2, 1fr); }
+  .detail-layout     { grid-template-columns: 1fr; }
+  .meta-card         { position: static; }
+}
+
+/* Small phones: single column */
+@media (max-width: 600px) {
+  .jobs-grid         { grid-template-columns: 1fr; }
+  .main-content      { padding: 16px; }
+  .main              { padding: 20px 16px; }
+  .card              { padding: 24px 20px; }
+  .jobs-hero         { padding: 24px 16px; }
+}

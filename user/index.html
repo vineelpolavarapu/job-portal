@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ================================================
+     FILE: user/index.html
+     PURPOSE: Single-page user portal (primary experience)
+     Contains all user views as hidden sections.
+     The SPA router in user.js shows/hides them.
+
+     PAGE SECTIONS (in order):
+       #page-login      — User sign in
+       #page-register   — New account creation
+       #page-jobs       — Job listings (hero + sidebar + grid)
+       #page-job-detail — Full job view + Save Job
+
+     NAVIGATION:
+       data-nav="page-name"  → navigateTo() in user.js
+       data-action="logout"  → clearSession + go to login
+
+     STYLE: user/style.css
+     LOGIC: user/user.js
+     ================================================ -->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Portal</title>
+
+  <!-- ── Shared User Portal Stylesheet ── -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<!-- ====================================================
+     PAGE SECTION: LOGIN
+     ID: page-login
+     Shown first if no userSession in localStorage.
+     user.js → attachLoginForm() handles form submit.
+     ==================================================== -->
+<div id="page-login" data-page>
+
+  <!-- Full-height centered layout wrapper -->
+  <div class="auth-center">
+    <div class="login-wrapper">
+
+      <!-- ── Brand / Logo ── -->
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.1 15.9 0 13.36 0c-1.46 0-2.73.67-3.6 1.72L12 4.5l2.23-2.78C14.85 1.28 15.59 1 16.36 1 18.36 1 20 2.64 20 4.64c0 1.01-.39 1.93-1.03 2.63L12 14 5.03 7.27C4.39 6.57 4 5.65 4 4.64 4 2.64 5.64 1 7.64 1c.77 0 1.51.28 2.13.72L12 4.5l2.24-2.78C13.37.67 12.1 0 10.64 0 8.1 0 6 2.1 6 4.64c0 .48.11.92.18 1.36H4C2.9 6 2 6.9 2 8v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 14H4V8h16v12z"/>
+          </svg>
+        </div>
+        <h1>Job Portal</h1>
+        <p class="tagline">Sign in to browse job opportunities</p>
+      </div>
+
+      <!-- ── Login Card ── -->
+      <div class="card">
+        <h2>Welcome Back</h2>
+
+        <!-- Global error shown on bad credentials -->
+        <div class="global-error" id="loginGlobalError"></div>
+
+        <!-- Login form — submit handled by user.js → attachLoginForm() -->
+        <form id="userLoginForm" novalidate>
+
+          <!-- Email field -->
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" name="email"
+              placeholder="you@example.com" required autocomplete="email" />
+            <span class="error-msg" id="loginEmailError">Please enter a valid email address.</span>
+          </div>
+
+          <!-- Password field -->
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" name="password"
+              placeholder="Enter your password" required autocomplete="current-password" />
+            <span class="error-msg" id="loginPasswordError">Password is required.</span>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="loginSubmitBtn">
+            Sign In
+          </button>
+
+        </form>
+      </div>
+
+      <!-- Link to register page section -->
+      <div class="register-link">
+        Don't have an account?
+        <a href="#" data-nav="register">Create one</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<!-- END: PAGE SECTION: LOGIN -->
+
+
+<!-- ====================================================
+     PAGE SECTION: REGISTER
+     ID: page-register
+     Shown when user clicks "Create one" on login.
+     user.js → attachRegisterForm() handles submit.
+     On success: saves user to "users" localStorage
+     array then navigates to login.
+     ==================================================== -->
+<div id="page-register" data-page hidden>
+
+  <!-- Full-height centered layout wrapper -->
+  <div class="auth-center">
+    <div class="register-wrapper">
+
+      <!-- ── Brand / Logo ── -->
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.1 15.9 0 13.36 0c-1.46 0-2.73.67-3.6 1.72L12 4.5l2.23-2.78C14.85 1.28 15.59 1 16.36 1 18.36 1 20 2.64 20 4.64c0 1.01-.39 1.93-1.03 2.63L12 14 5.03 7.27C4.39 6.57 4 5.65 4 4.64 4 2.64 5.64 1 7.64 1c.77 0 1.51.28 2.13.72L12 4.5l2.24-2.78C13.37.67 12.1 0 10.64 0 8.1 0 6 2.1 6 4.64c0 .48.11.92.18 1.36H4C2.9 6 2 6.9 2 8v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 14H4V8h16v12z"/>
+          </svg>
+        </div>
+        <h1>Job Portal</h1>
+        <p class="tagline">Find your dream job today</p>
+      </div>
+
+      <!-- ── Register Card ── -->
+      <div class="card">
+        <h2>Create an Account</h2>
+
+        <!-- Error / success alerts -->
+        <div class="global-error" id="registerGlobalError"></div>
+        <div class="global-success" id="registerGlobalSuccess"></div>
+
+        <!-- Register form — submit handled by user.js → attachRegisterForm() -->
+        <form id="registerForm" novalidate>
+
+          <!-- Full name -->
+          <div class="form-group">
+            <label for="regFullName">Full Name</label>
+            <input type="text" id="regFullName" name="fullName"
+              placeholder="John Doe" required autocomplete="name" />
+            <span class="error-msg" id="fullNameError">Full name is required.</span>
+          </div>
+
+          <!-- Email — used as login identifier -->
+          <div class="form-group">
+            <label for="regEmail">Email Address</label>
+            <input type="email" id="regEmail" name="email"
+              placeholder="you@example.com" required autocomplete="email" />
+            <span class="error-msg" id="regEmailError">Please enter a valid email address.</span>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label for="regPassword">Password</label>
+            <input type="password" id="regPassword" name="password"
+              placeholder="At least 6 characters" required autocomplete="new-password" />
+            <span class="error-msg" id="regPasswordError">Password must be at least 6 characters.</span>
+          </div>
+
+          <!-- Confirm password — must match -->
+          <div class="form-group">
+            <label for="regConfirmPassword">Confirm Password</label>
+            <input type="password" id="regConfirmPassword" name="confirmPassword"
+              placeholder="Re-enter your password" required autocomplete="new-password" />
+            <span class="error-msg" id="confirmPasswordError">Passwords do not match.</span>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="registerSubmitBtn">
+            Create Account
+          </button>
+
+        </form>
+      </div>
+
+      <!-- Link back to login -->
+      <div class="login-link">
+        Already have an account?
+        <a href="#" data-nav="login">Sign in</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<!-- END: PAGE SECTION: REGISTER -->
+
+
+<!-- ====================================================
+     PAGE SECTION: JOBS
+     ID: page-jobs
+     THE PRIMARY USER EXPERIENCE.
+     Hero banner → left sidebar filters → 3-col job grid.
+     user.js → refreshJobsPage() loads and renders jobs
+     each time this section is shown.
+     ==================================================== -->
+<div id="page-jobs" data-page hidden>
+
+  <!-- ── Navbar ── -->
+  <nav class="navbar">
+    <a href="#" class="navbar-brand" data-nav="jobs">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.1 15.9 0 13.36 0c-1.46 0-2.73.67-3.6 1.72L12 4.5l2.23-2.78C14.85 1.28 15.59 1 16.36 1 18.36 1 20 2.64 20 4.64c0 1.01-.39 1.93-1.03 2.63L12 14 5.03 7.27C4.39 6.57 4 5.65 4 4.64 4 2.64 5.64 1 7.64 1c.77 0 1.51.28 2.13.72L12 4.5l2.24-2.78C13.37.67 12.1 0 10.64 0 8.1 0 6 2.1 6 4.64c0 .48.11.92.18 1.36H4C2.9 6 2 6.9 2 8v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 14H4V8h16v12z"/>
+      </svg>
+      <span>Job Portal</span>
+    </a>
+    <div class="navbar-right">
+      <!-- User name injected by user.js → refreshJobsPage() -->
+      <span class="user-name" id="jobsUserName"></span>
+      <button class="btn btn-outline-light" data-action="logout">Logout</button>
+    </div>
+  </nav>
+
+  <!-- ── Hero Banner — highlights this as the main user experience ── -->
+  <div class="jobs-hero">
+    <h1>Find Your Dream Job</h1>
+    <p>Browse opportunities across engineering, design, marketing, and more</p>
+  </div>
+
+  <!-- ── Main Layout: sidebar + grid ── -->
+  <div class="layout">
+
+    <!-- Left Sidebar: filter controls -->
+    <!-- All inputs trigger real-time re-render via user.js listeners -->
+    <aside class="sidebar">
+      <h2>Filters</h2>
+
+      <!-- Filter 1: Keyword search -->
+      <div class="filter-group">
+        <label for="filterKeyword">Keyword Search</label>
+        <input type="text" id="filterKeyword" placeholder="Title, company, role..." />
+      </div>
+
+      <!-- Filter 2: Role (dynamically populated from jobs) -->
+      <div class="filter-group">
+        <label for="filterRole">Role / Department</label>
+        <select id="filterRole">
+          <option value="">All Roles</option>
+          <!-- Options injected by user.js → populateRoleDropdown() -->
+        </select>
+      </div>
+
+      <!-- Filter 3: Job type -->
+      <div class="filter-group">
+        <label for="filterType">Job Type</label>
+        <select id="filterType">
+          <option value="">All Types</option>
+          <option value="Full-Time">Full-Time</option>
+          <option value="Part-Time">Part-Time</option>
+          <option value="Contract">Contract</option>
+          <option value="Internship">Internship</option>
+        </select>
+      </div>
+
+      <!-- Filter 4: Experience level -->
+      <div class="filter-group">
+        <label for="filterExperience">Experience Level</label>
+        <select id="filterExperience">
+          <option value="">Any Experience</option>
+          <option value="0-1 years">0-1 years</option>
+          <option value="1-3 years">1-3 years</option>
+          <option value="3-5 years">3-5 years</option>
+          <option value="5+ years">5+ years</option>
+        </select>
+      </div>
+
+      <!-- Filter 5: Minimum salary -->
+      <div class="filter-group">
+        <label for="filterMinSalary">Minimum Salary</label>
+        <input type="number" id="filterMinSalary" placeholder="e.g. 50000" min="0" />
+      </div>
+
+      <hr class="sidebar-divider" />
+
+      <!-- Results count updated on each filter change -->
+      <div class="results-count" id="resultsCount"></div>
+
+      <!-- Clear all filters -->
+      <button class="btn btn-ghost" id="clearFiltersBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+        Clear Filters
+      </button>
+    </aside>
+
+    <!-- Right: job cards grid -->
+    <main class="main-content">
+      <div class="content-header">
+        <h1>Browse Jobs</h1>
+        <p>Discover opportunities that match your skills and interests</p>
+      </div>
+
+      <!-- 3-column grid — cards injected by user.js → renderJobCards() -->
+      <!-- Click on card or "View Details" → navigates to job-detail section -->
+      <div class="jobs-grid" id="jobsGrid"></div>
+    </main>
+
+  </div>
+
+</div>
+<!-- END: PAGE SECTION: JOBS -->
+
+
+<!-- ====================================================
+     PAGE SECTION: JOB DETAIL
+     ID: page-job-detail
+     Shown when user clicks a job card.
+     selectedJobId stored in localStorage by user.js.
+     user.js → refreshJobDetail() finds job and renders
+     full detail view including Save Job button.
+     ==================================================== -->
+<div id="page-job-detail" data-page hidden>
+
+  <!-- ── Navbar with back link ── -->
+  <nav class="navbar">
+    <div class="navbar-left">
+      <!-- Portal brand -->
+      <a href="#" class="navbar-brand" data-nav="jobs">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.1 15.9 0 13.36 0c-1.46 0-2.73.67-3.6 1.72L12 4.5l2.23-2.78C14.85 1.28 15.59 1 16.36 1 18.36 1 20 2.64 20 4.64c0 1.01-.39 1.93-1.03 2.63L12 14 5.03 7.27C4.39 6.57 4 5.65 4 4.64 4 2.64 5.64 1 7.64 1c.77 0 1.51.28 2.13.72L12 4.5l2.24-2.78C13.37.67 12.1 0 10.64 0 8.1 0 6 2.1 6 4.64c0 .48.11.92.18 1.36H4C2.9 6 2 6.9 2 8v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 14H4V8h16v12z"/>
+        </svg>
+        <span>Job Portal</span>
+      </a>
+      <!-- Divider -->
+      <div class="navbar-divider"></div>
+      <!-- Back to jobs list -->
+      <a href="#" class="back-link" data-nav="jobs">
+        <svg viewBox="0 0 24 24">
+          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+        </svg>
+        Back to Jobs
+      </a>
+    </div>
+    <div class="navbar-right">
+      <!-- User name injected by user.js → refreshJobDetail() -->
+      <span class="user-name" id="detailUserName"></span>
+      <button class="btn btn-outline-light" data-action="logout">Logout</button>
+    </div>
+  </nav>
+
+  <!-- ── Job Detail Content ── -->
+  <!-- Max-width 1100px container -->
+  <main class="main">
+
+    <!-- Full detail layout injected here by user.js → refreshJobDetail() -->
+    <!-- Structure: .detail-layout > .left-col + aside.meta-card -->
+    <!-- Left: job-header, summary, responsibilities, benefits -->
+    <!-- Right: salary, experience, skills tags, Save Job button -->
+    <div id="jobDetailContent"></div>
+
+  </main>
+
+</div>
+<!-- END: PAGE SECTION: JOB DETAIL -->
+
+
+<!-- ── User Portal JS (all logic, no inline scripts) ── -->
+<script src="user.js"></script>
+</body>
+</html>

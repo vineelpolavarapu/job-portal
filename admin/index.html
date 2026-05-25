@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ================================================
+     FILE: admin/index.html
+     PURPOSE: Single-page admin portal
+     Contains all admin views as hidden sections.
+     The SPA router in admin.js shows/hides them.
+
+     PAGE SECTIONS (in order):
+       #page-login     — Admin authentication
+       #page-dashboard — Job listings + stats
+       #page-post-job  — New job posting form
+
+     NAVIGATION:
+       data-nav="page-name"  → navigateTo() in admin.js
+       data-action="logout"  → clearSession + go to login
+
+     STYLE: admin/style.css
+     LOGIC: admin/admin.js
+     ================================================ -->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Portal Admin</title>
+
+  <!-- ── Shared Admin Stylesheet ── -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<!-- ====================================================
+     PAGE SECTION: LOGIN
+     ID: page-login
+     Shown first if no adminSession in localStorage.
+     admin.js → attachLoginForm() handles form submit.
+     ==================================================== -->
+<div id="page-login" data-page>
+
+  <!-- Full-height centered layout wrapper -->
+  <div class="auth-center">
+    <div class="login-wrapper">
+
+      <!-- ── Brand / Logo ── -->
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.1 15.9 0 13.36 0c-1.46 0-2.73.67-3.6 1.72L12 4.5l2.23-2.78C14.85 1.28 15.59 1 16.36 1 18.36 1 20 2.64 20 4.64c0 1.01-.39 1.93-1.03 2.63L12 14 5.03 7.27C4.39 6.57 4 5.65 4 4.64 4 2.64 5.64 1 7.64 1c.77 0 1.51.28 2.13.72L12 4.5l2.24-2.78C13.37.67 12.1 0 10.64 0 8.1 0 6 2.1 6 4.64c0 .48.11.92.18 1.36H4C2.9 6 2 6.9 2 8v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 14H4V8h16v12z"/>
+          </svg>
+        </div>
+        <h1>Job Portal Admin</h1>
+        <p>Sign in to manage job postings</p>
+      </div>
+
+      <!-- ── Login Card ── -->
+      <div class="card">
+        <h2>Admin Sign In</h2>
+
+        <!-- Global error alert shown on bad credentials -->
+        <div class="global-error" id="loginGlobalError"></div>
+
+        <!-- Login form — submit handled by admin.js → attachLoginForm() -->
+        <form id="adminLoginForm" novalidate>
+
+          <!-- Email field -->
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" name="email"
+              placeholder="admin@jobportal.com" required autocomplete="email" />
+            <span class="error-msg" id="loginEmailError">Please enter a valid email.</span>
+          </div>
+
+          <!-- Password field -->
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" name="password"
+              placeholder="Enter your password" required autocomplete="current-password" />
+            <span class="error-msg" id="loginPasswordError">Password is required.</span>
+          </div>
+
+          <!-- Submit — disabled during fetch by admin.js -->
+          <button type="submit" class="btn btn-primary" id="loginSubmitBtn">
+            Sign In
+          </button>
+
+        </form>
+      </div>
+      <!-- END: Login Card -->
+
+    </div>
+  </div>
+
+</div>
+<!-- END: PAGE SECTION: LOGIN -->
+
+
+<!-- ====================================================
+     PAGE SECTION: DASHBOARD
+     ID: page-dashboard
+     Hidden on load. Shown after successful login.
+     admin.js → refreshDashboard() re-renders table
+     each time this page is shown.
+     ==================================================== -->
+<div id="page-dashboard" data-page hidden>
+
+  <!-- ── Navbar ── -->
+  <!-- data-nav="dashboard" on brand keeps URL clean -->
+  <nav class="navbar">
+    <a href="#" class="navbar-brand" data-nav="dashboard">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.1 15.9 0 13.36 0c-1.46 0-2.73.67-3.6 1.72L12 4.5l2.23-2.78C14.85 1.28 15.59 1 16.36 1 18.36 1 20 2.64 20 4.64c0 1.01-.39 1.93-1.03 2.63L12 14 5.03 7.27C4.39 6.57 4 5.65 4 4.64 4 2.64 5.64 1 7.64 1c.77 0 1.51.28 2.13.72L12 4.5l2.24-2.78C13.37.67 12.1 0 10.64 0 8.1 0 6 2.1 6 4.64c0 .48.11.92.18 1.36H4C2.9 6 2 6.9 2 8v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 14H4V8h16v12z"/>
+      </svg>
+      <span>Job Portal Admin</span>
+    </a>
+    <div class="navbar-right">
+      <!-- Admin name injected by admin.js → refreshDashboard() -->
+      <span class="admin-name" id="dashAdminName"></span>
+      <!-- data-action="logout" triggers clearAdminSession in admin.js -->
+      <button class="btn btn-outline-light" data-action="logout">Logout</button>
+    </div>
+  </nav>
+
+  <!-- ── Main Content ── -->
+  <main class="main">
+
+    <!-- Page header: title + New Job button -->
+    <div class="page-header">
+      <div>
+        <h1>Dashboard</h1>
+        <p>Manage all job postings from here</p>
+      </div>
+      <!-- data-nav navigates to post-job section -->
+      <button class="btn btn-accent" data-nav="post-job">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"/>
+        </svg>
+        New Job Posting
+      </button>
+    </div>
+
+    <!-- Stats summary row — counters updated by admin.js -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Total Jobs</div>
+        <div class="stat-value primary" id="statTotal">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Active Jobs</div>
+        <div class="stat-value accent" id="statActive">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Full-Time</div>
+        <div class="stat-value" id="statFullTime">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Internships</div>
+        <div class="stat-value" id="statIntern">0</div>
+      </div>
+    </div>
+
+    <!-- Jobs table card — table injected by admin.js → renderDashboard() -->
+    <div class="table-card">
+      <div class="table-card-header">
+        <h2>Job Postings</h2>
+      </div>
+      <!-- Table rows: Title | Company | Role | Type | Location | Date | Status | Actions -->
+      <div id="tableContainer"></div>
+    </div>
+
+  </main>
+
+</div>
+<!-- END: PAGE SECTION: DASHBOARD -->
+
+
+<!-- ====================================================
+     PAGE SECTION: POST JOB
+     ID: page-post-job
+     Hidden until user clicks "New Job Posting".
+     Form has 4 numbered section cards.
+     admin.js → attachPostJobForm() handles submit.
+     Universal Job Schema saved to localStorage "jobs".
+     ==================================================== -->
+<div id="page-post-job" data-page hidden>
+
+  <!-- ── Navbar ── -->
+  <nav class="navbar">
+    <a href="#" class="navbar-brand" data-nav="dashboard">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.1 15.9 0 13.36 0c-1.46 0-2.73.67-3.6 1.72L12 4.5l2.23-2.78C14.85 1.28 15.59 1 16.36 1 18.36 1 20 2.64 20 4.64c0 1.01-.39 1.93-1.03 2.63L12 14 5.03 7.27C4.39 6.57 4 5.65 4 4.64 4 2.64 5.64 1 7.64 1c.77 0 1.51.28 2.13.72L12 4.5l2.24-2.78C13.37.67 12.1 0 10.64 0 8.1 0 6 2.1 6 4.64c0 .48.11.92.18 1.36H4C2.9 6 2 6.9 2 8v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 14H4V8h16v12z"/>
+      </svg>
+      <span>Job Portal Admin</span>
+    </a>
+    <div class="navbar-right">
+      <!-- Admin name injected by admin.js → refreshPostJob() -->
+      <span class="admin-name" id="postJobAdminName"></span>
+      <button class="btn btn-outline-light" data-action="logout">Logout</button>
+    </div>
+  </nav>
+
+  <!-- ── Main Content ── -->
+  <main class="main post-job-main">
+
+    <!-- Page header with back arrow -->
+    <div class="page-header">
+      <div class="page-header-left">
+        <!-- Back to dashboard -->
+        <a href="#" class="btn btn-back" data-nav="dashboard">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+          </svg>
+          Back
+        </a>
+        <div>
+          <h1>Post a New Job</h1>
+          <p>Fill in all the details to publish a new job listing</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Job Posting Form ── -->
+    <!-- On submit: admin.js builds Universal Job Schema and saves to localStorage -->
+    <form id="postJobForm" novalidate>
+
+      <!-- ── FORM SECTION 1: Job Details → jobDetails.* ── -->
+      <div class="form-card">
+        <h2><span class="section-num">1</span> Job Details</h2>
+        <div class="form-grid">
+
+          <!-- jobDetails.title -->
+          <div class="form-group">
+            <label for="jobTitle">Job Title <span class="required">*</span></label>
+            <input type="text" id="jobTitle" name="title"
+              placeholder="e.g. Senior Software Engineer" required />
+            <span class="error-msg" id="titleError">Job title is required.</span>
+          </div>
+
+          <!-- jobDetails.company -->
+          <div class="form-group">
+            <label for="jobCompany">Company Name <span class="required">*</span></label>
+            <input type="text" id="jobCompany" name="company"
+              placeholder="e.g. Acme Corp" required />
+            <span class="error-msg" id="companyError">Company name is required.</span>
+          </div>
+
+          <!-- jobDetails.role -->
+          <div class="form-group">
+            <label for="jobRole">Role / Department <span class="required">*</span></label>
+            <input type="text" id="jobRole" name="role"
+              placeholder="e.g. Engineering, Marketing" required />
+            <span class="error-msg" id="roleError">Role is required.</span>
+          </div>
+
+          <!-- jobDetails.type -->
+          <div class="form-group">
+            <label for="jobType">Job Type <span class="required">*</span></label>
+            <select id="jobType" name="type" required>
+              <option value="" disabled selected>Select type</option>
+              <option value="Full-Time">Full-Time</option>
+              <option value="Part-Time">Part-Time</option>
+              <option value="Contract">Contract</option>
+              <option value="Internship">Internship</option>
+            </select>
+            <span class="error-msg" id="typeError">Please select a job type.</span>
+          </div>
+
+          <!-- jobDetails.location -->
+          <div class="form-group">
+            <label for="jobLocation">Location <span class="required">*</span></label>
+            <input type="text" id="jobLocation" name="location"
+              placeholder="e.g. New York, NY or Remote" required />
+            <span class="error-msg" id="locationError">Location is required.</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── FORM SECTION 2: Requirements → requirements.* ── -->
+      <div class="form-card">
+        <h2><span class="section-num">2</span> Requirements</h2>
+        <div class="form-grid">
+
+          <!-- requirements.experience -->
+          <div class="form-group">
+            <label for="jobExperience">Experience Level <span class="required">*</span></label>
+            <select id="jobExperience" name="experience" required>
+              <option value="" disabled selected>Select experience</option>
+              <option value="0-1 years">0-1 years</option>
+              <option value="1-3 years">1-3 years</option>
+              <option value="3-5 years">3-5 years</option>
+              <option value="5+ years">5+ years</option>
+            </select>
+            <span class="error-msg" id="experienceError">Please select experience level.</span>
+          </div>
+
+          <!-- requirements.education -->
+          <div class="form-group">
+            <label for="jobEducation">Education <span class="required">*</span></label>
+            <input type="text" id="jobEducation" name="education"
+              placeholder="e.g. B.Tech / B.E. in CS" required />
+            <span class="error-msg" id="educationError">Education is required.</span>
+          </div>
+
+          <!-- requirements.skills — comma-separated → split into array on save -->
+          <div class="form-group full-width">
+            <label for="jobSkills">Skills Required <span class="required">*</span></label>
+            <input type="text" id="jobSkills" name="skills"
+              placeholder="e.g. JavaScript, React, Node.js (comma-separated)" required />
+            <span class="form-hint">Enter skills separated by commas.</span>
+            <span class="error-msg" id="skillsError">At least one skill is required.</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── FORM SECTION 3: Compensation → compensation.* ── -->
+      <div class="form-card">
+        <h2><span class="section-num">3</span> Compensation</h2>
+        <div class="form-grid three-col">
+
+          <!-- compensation.salary -->
+          <div class="form-group">
+            <label for="jobSalary">Salary <span class="required">*</span></label>
+            <input type="number" id="jobSalary" name="salary"
+              placeholder="e.g. 80000" min="0" required />
+            <span class="error-msg" id="salaryError">Please enter a valid salary.</span>
+          </div>
+
+          <!-- compensation.currency -->
+          <div class="form-group">
+            <label for="jobCurrency">Currency <span class="required">*</span></label>
+            <select id="jobCurrency" name="currency" required>
+              <option value="" disabled selected>Select currency</option>
+              <option value="USD">USD</option>
+              <option value="INR">INR</option>
+              <option value="GBP">GBP</option>
+            </select>
+            <span class="error-msg" id="currencyError">Please select a currency.</span>
+          </div>
+
+          <!-- compensation.period -->
+          <div class="form-group">
+            <label for="jobPeriod">Pay Period <span class="required">*</span></label>
+            <select id="jobPeriod" name="period" required>
+              <option value="" disabled selected>Select period</option>
+              <option value="Annual">Annual</option>
+              <option value="Monthly">Monthly</option>
+            </select>
+            <span class="error-msg" id="periodError">Please select pay period.</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── FORM SECTION 4: Description → description.* ── -->
+      <div class="form-card">
+        <h2><span class="section-num">4</span> Description</h2>
+        <div class="form-grid">
+
+          <!-- description.summary -->
+          <div class="form-group full-width">
+            <label for="jobSummary">Job Summary <span class="required">*</span></label>
+            <textarea id="jobSummary" name="summary" rows="3"
+              placeholder="Briefly describe the role and what makes it exciting..."
+              required></textarea>
+            <span class="error-msg" id="summaryError">Summary is required.</span>
+          </div>
+
+          <!-- description.responsibilities — one per line → split into array -->
+          <div class="form-group">
+            <label for="jobResponsibilities">Responsibilities <span class="required">*</span></label>
+            <textarea id="jobResponsibilities" name="responsibilities" rows="5"
+              placeholder="List responsibilities, one per line..." required></textarea>
+            <span class="form-hint">Enter each responsibility on a new line.</span>
+            <span class="error-msg" id="responsibilitiesError">Please enter at least one responsibility.</span>
+          </div>
+
+          <!-- description.benefits — one per line → split into array -->
+          <div class="form-group">
+            <label for="jobBenefits">Benefits <span class="required">*</span></label>
+            <textarea id="jobBenefits" name="benefits" rows="5"
+              placeholder="List benefits, one per line..." required></textarea>
+            <span class="form-hint">Enter each benefit on a new line.</span>
+            <span class="error-msg" id="benefitsError">Please enter at least one benefit.</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Form actions: Cancel goes back, Submit saves job -->
+      <div class="form-actions">
+        <a href="#" class="btn btn-secondary" data-nav="dashboard">Cancel</a>
+        <button type="submit" class="btn btn-accent" id="postJobSubmitBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7l-4-4zm2 16H5V5h11.17L19 7.83V19zm-7-7c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zM6 6h9v4H6z"/>
+          </svg>
+          Post Job
+        </button>
+      </div>
+
+    </form>
+    <!-- END: Job Posting Form -->
+
+  </main>
+
+</div>
+<!-- END: PAGE SECTION: POST JOB -->
+
+
+<!-- ── Admin JS (all logic, no inline scripts) ── -->
+<script src="admin.js"></script>
+</body>
+</html>

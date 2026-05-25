@@ -1,0 +1,636 @@
+/* ================================================
+   admin/style.css — Job Portal Admin Styles
+   Shared by: login.html | dashboard.html | post-job.html
+   ================================================ */
+
+
+/* ================================================
+   SECTION 1: CSS Variables & Design Tokens
+   Central place to change colors, shadows, radius
+   ================================================ */
+
+:root {
+  --primary:     #0ea5e9;   /* sky blue — primary actions */
+  --accent:      #10b981;   /* emerald green — success / new job */
+  --bg:          #f1f5f9;   /* page background */
+  --surface:     #ffffff;   /* card / panel background */
+  --text:        #1e293b;   /* primary text */
+  --text-muted:  #64748b;   /* secondary / helper text */
+  --border:      #e2e8f0;   /* input and divider borders */
+  --navbar:      #0f172a;   /* dark navy navbar */
+  --danger:      #ef4444;   /* error / delete */
+
+  --radius:      8px;
+  --shadow:      0 1px 3px rgba(0,0,0,0.1),  0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md:   0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+}
+
+
+/* ================================================
+   SECTION 2: Reset & Base Styles
+   Box-model normalization
+   ================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+
+/* ================================================
+   SECTION 3: Navbar
+   Fixed top bar shared by dashboard + post-job
+   ================================================ */
+
+.navbar {
+  background: var(--navbar);
+  height: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar-brand svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--primary);
+  flex-shrink: 0;
+}
+
+.navbar-brand span {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.admin-name {
+  color: #cbd5e1;
+  font-size: 0.875rem;
+}
+
+
+/* ================================================
+   SECTION 4: Buttons
+   .btn base + variants used across all admin pages
+   ================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s, transform 0.1s;
+  text-decoration: none;
+  line-height: 1;
+}
+
+/* Outline light — navbar logout button */
+.btn-outline-light {
+  background: transparent;
+  color: #cbd5e1;
+  border: 1px solid #334155;
+}
+
+.btn-outline-light:hover {
+  background: #1e293b;
+  color: #fff;
+}
+
+/* Primary blue — login submit */
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 0.9375rem;
+}
+
+.btn-primary:hover    { background: #0284c7; }
+.btn-primary:active   { transform: scale(0.98); }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Accent green — new job posting button */
+.btn-accent {
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 0.9375rem;
+}
+
+.btn-accent:hover    { background: #059669; }
+.btn-accent:active   { transform: scale(0.98); }
+.btn-accent:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Secondary — cancel button on post-job form */
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 10px 20px;
+  font-size: 0.9375rem;
+}
+
+.btn-secondary:hover { background: #f8fafc; }
+
+/* Danger small — delete row button on dashboard */
+.btn-danger-sm {
+  background: #fef2f2;
+  color: var(--danger);
+  border: 1px solid #fecaca;
+  padding: 5px 12px;
+  font-size: 0.8125rem;
+}
+
+.btn-danger-sm:hover { background: #fee2e2; }
+
+/* Back — arrow back on post-job page */
+.btn-back {
+  background: transparent;
+  color: #94a3b8;
+  border: 1px solid #334155;
+  font-size: 0.875rem;
+  padding: 8px 16px;
+}
+
+.btn-back:hover {
+  background: #1e293b;
+  color: #fff;
+}
+
+
+/* ================================================
+   SECTION 5: Form Elements
+   Inputs, selects, textareas, labels, hints, errors
+   ================================================ */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.form-group label .required {
+  color: var(--danger);
+  margin-left: 2px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--surface);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+}
+
+/* Custom dropdown arrow */
+.form-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='%2364748b'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 36px;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.5;
+}
+
+/* Small helper text below input */
+.form-hint {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* Field-level error message */
+.error-msg {
+  display: none;
+  color: var(--danger);
+  font-size: 0.8125rem;
+}
+
+.error-msg.visible { display: block; }
+
+/* Global error alert box (login, post-job) */
+.global-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: var(--danger);
+  font-size: 0.875rem;
+  margin-bottom: 18px;
+  display: none;
+}
+
+.global-error.visible { display: block; }
+
+
+/* ================================================
+   SECTION 6: Login Page Layout
+   Centered card layout used by login.html
+   ================================================ */
+
+/* Full-viewport centered wrapper used by the login page section */
+.auth-center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: var(--bg);
+}
+
+.login-wrapper {
+  width: 100%;
+  max-width: 420px;
+  padding: 24px 16px;
+}
+
+/* Brand logo + title above the card */
+.brand {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.brand-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--navbar);
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.brand-icon svg {
+  width: 30px;
+  height: 30px;
+  fill: var(--primary);
+}
+
+.brand h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--navbar);
+  letter-spacing: -0.02em;
+}
+
+.brand p {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+
+/* White card container for the form */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: 32px;
+}
+
+.card h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--text);
+}
+
+
+/* ================================================
+   SECTION 7: Dashboard Page
+   Stats row, table card, jobs table
+   ================================================ */
+
+/* Offset for fixed navbar */
+.main {
+  margin-top: 60px;
+  padding: 32px 24px;
+}
+
+/* Page title + action button row */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.page-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.page-header p {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin-top: 2px;
+}
+
+/* Stats summary cards row */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.stat-card .stat-label {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-card .stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 4px;
+  line-height: 1;
+}
+
+.stat-card .stat-value.primary { color: var(--primary); }
+.stat-card .stat-value.accent  { color: var(--accent); }
+
+/* Table container card */
+.table-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.table-card-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table-card-header h2 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.table-wrapper { overflow-x: auto; }
+
+/* Jobs table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+thead th {
+  background: #f8fafc;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover      { background: #f8fafc; }
+
+tbody td {
+  padding: 13px 16px;
+  color: var(--text);
+  vertical-align: middle;
+}
+
+tbody td.muted  { color: var(--text-muted); }
+.td-title       { font-weight: 600; }
+
+
+/* ================================================
+   SECTION 8: Badges
+   Pill-shaped labels used in table rows and cards
+   ================================================ */
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.badge-type     { background: #e0f2fe; color: var(--primary); }
+.badge-active   { background: #dcfce7; color: #15803d; }
+.badge-inactive { background: #f1f5f9; color: var(--text-muted); }
+
+
+/* ================================================
+   SECTION 9: Post Job Page — Form Cards & Grid
+   Multi-section form layout used by post-job.html
+   ================================================ */
+
+/* Constrain form width and center it */
+.main.post-job-main {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Each numbered section card on post-job */
+.form-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: 28px 32px;
+  margin-bottom: 20px;
+}
+
+.form-card h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Numbered circle before each section heading */
+.form-card h2 .section-num {
+  width: 24px;
+  height: 24px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* 2-column grid for form fields inside a section */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* 3-column variant for compensation section */
+.form-grid.three-col {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Field that spans both columns */
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Submit + Cancel row at bottom of form */
+.form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+
+/* ================================================
+   SECTION 10: Empty State
+   Centered placeholder when no jobs exist
+   ================================================ */
+
+.empty-state {
+  text-align: center;
+  padding: 64px 24px;
+  color: var(--text-muted);
+}
+
+.empty-state svg {
+  width: 64px;
+  height: 64px;
+  fill: #cbd5e1;
+  margin-bottom: 16px;
+}
+
+.empty-state h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  font-size: 0.9375rem;
+  margin-bottom: 24px;
+}
+
+
+/* ================================================
+   SECTION 11: Responsive — Mobile Adjustments
+   ================================================ */
+
+@media (max-width: 640px) {
+  .form-grid,
+  .form-grid.three-col {
+    grid-template-columns: 1fr;
+  }
+
+  .form-card {
+    padding: 20px 18px;
+  }
+
+  .main {
+    padding: 20px 16px;
+  }
+}

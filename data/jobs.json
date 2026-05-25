@@ -1,0 +1,844 @@
+{
+  "jobs": [
+    {
+      "id": "job_001",
+      "meta": {
+        "createdAt": "2025-04-01T09:00:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "Senior Frontend Developer",
+        "company": "TechCorp Solutions",
+        "role": "Engineering",
+        "type": "Full-Time",
+        "location": "San Francisco, CA"
+      },
+      "requirements": {
+        "experience": "5+ years",
+        "skills": ["React", "TypeScript", "CSS", "GraphQL", "Jest"],
+        "education": "B.Sc. in Computer Science or equivalent"
+      },
+      "compensation": {
+        "salary": 145000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "We're looking for a Senior Frontend Developer to lead UI engineering for our flagship SaaS platform. You'll architect scalable React components, own the design system, and mentor junior engineers on a fast-moving product team.",
+        "responsibilities": [
+          "Architect and build high-performance React applications",
+          "Own and maintain the shared component library",
+          "Collaborate with design and backend teams on feature delivery",
+          "Conduct code reviews and mentor junior developers",
+          "Drive performance optimization initiatives"
+        ],
+        "benefits": [
+          "Comprehensive health, dental, and vision insurance",
+          "Remote-friendly with flexible working hours",
+          "Annual $2,000 learning and development budget",
+          "401(k) with 4% company match",
+          "Generous PTO + company-wide mental health days"
+        ]
+      }
+    },
+    {
+      "id": "job_002",
+      "meta": {
+        "createdAt": "2025-04-03T10:30:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "Backend Engineer (Node.js)",
+        "company": "DataFlow Inc.",
+        "role": "Engineering",
+        "type": "Full-Time",
+        "location": "Remote"
+      },
+      "requirements": {
+        "experience": "3-5 years",
+        "skills": ["Node.js", "PostgreSQL", "REST APIs", "Docker", "AWS"],
+        "education": "B.Sc. in Computer Science or related field"
+      },
+      "compensation": {
+        "salary": 120000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "DataFlow is hiring a Backend Engineer to scale the data pipeline powering our analytics platform. You will design RESTful APIs, optimize database queries, and collaborate closely with our data science team to build reliable, high-throughput services.",
+        "responsibilities": [
+          "Design and develop RESTful APIs consumed by web and mobile clients",
+          "Optimize PostgreSQL queries and data models for scale",
+          "Build and maintain containerized microservices on AWS",
+          "Write unit and integration tests for all new services",
+          "Participate in on-call rotation and incident response"
+        ],
+        "benefits": [
+          "100% remote with quarterly team retreats",
+          "Top-tier health and dental coverage",
+          "Home office setup stipend of $1,500",
+          "Unlimited PTO policy",
+          "Stock options in a fast-growing Series B company"
+        ]
+      }
+    },
+    {
+      "id": "job_003",
+      "meta": {
+        "createdAt": "2025-04-05T08:00:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "UX / UI Designer",
+        "company": "CreativeStudio Agency",
+        "role": "Design",
+        "type": "Full-Time",
+        "location": "New York, NY"
+      },
+      "requirements": {
+        "experience": "3-5 years",
+        "skills": ["Figma", "Prototyping", "User Research", "Design Systems", "Usability Testing"],
+        "education": "B.A./B.F.A. in Design, HCI, or equivalent experience"
+      },
+      "compensation": {
+        "salary": 105000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "CreativeStudio is seeking a talented UX/UI Designer to craft intuitive product experiences for a portfolio of enterprise clients. You will run discovery research, create wireframes and hi-fi prototypes, and work hand-in-hand with engineering to ensure pixel-perfect implementation.",
+        "responsibilities": [
+          "Lead end-to-end UX design from research to final specs",
+          "Create wireframes, prototypes, and design system components in Figma",
+          "Conduct user interviews and usability testing sessions",
+          "Partner with product and engineering to deliver polished features",
+          "Present design decisions to clients and senior stakeholders"
+        ],
+        "benefits": [
+          "Hybrid work model (3 days in NYC studio)",
+          "Full health, vision, and dental benefits",
+          "Annual design conference and training budget",
+          "Creative Fridays — 20% time for personal projects",
+          "Commuter benefits and transit card"
+        ]
+      }
+    },
+    {
+      "id": "job_004",
+      "meta": {
+        "createdAt": "2025-04-07T11:00:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "Product Manager",
+        "company": "InnovateTech",
+        "role": "Product",
+        "type": "Full-Time",
+        "location": "Seattle, WA"
+      },
+      "requirements": {
+        "experience": "3-5 years",
+        "skills": ["Roadmapping", "Agile", "SQL", "User Stories", "A/B Testing"],
+        "education": "B.Sc. in Business, Computer Science, or related field"
+      },
+      "compensation": {
+        "salary": 135000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "InnovateTech is looking for a Product Manager to own the roadmap for our core B2B product. You will translate customer insights into actionable requirements, lead cross-functional sprints, and track success metrics to drive growth from 50K to 500K users.",
+        "responsibilities": [
+          "Define and own the product roadmap for a key product area",
+          "Write clear user stories, PRDs, and acceptance criteria",
+          "Partner with engineering, design, and data to ship features on time",
+          "Run A/B experiments and analyze results to inform decisions",
+          "Communicate roadmap priorities to leadership and stakeholders"
+        ],
+        "benefits": [
+          "Competitive salary plus equity package",
+          "Premium health coverage including mental health support",
+          "Annual $3,000 professional development allowance",
+          "Flexible hybrid work arrangement",
+          "Generous parental leave (16 weeks)"
+        ]
+      }
+    },
+    {
+      "id": "job_005",
+      "meta": {
+        "createdAt": "2025-04-08T09:30:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "Data Scientist",
+        "company": "AnalyticsHub",
+        "role": "Data & Analytics",
+        "type": "Full-Time",
+        "location": "Austin, TX"
+      },
+      "requirements": {
+        "experience": "3-5 years",
+        "skills": ["Python", "Machine Learning", "SQL", "Pandas", "Scikit-learn"],
+        "education": "M.Sc. in Statistics, Data Science, or related field"
+      },
+      "compensation": {
+        "salary": 130000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "AnalyticsHub is growing its data science team to build predictive models that power real-time recommendations for 10M+ users. You'll design ML pipelines, collaborate with product to define success metrics, and deploy models into production.",
+        "responsibilities": [
+          "Build and deploy machine learning models for recommendation and prediction",
+          "Clean and transform large datasets for model training",
+          "Collaborate with product teams to define key success metrics",
+          "Monitor model performance and retrain as needed",
+          "Communicate findings to both technical and non-technical audiences"
+        ],
+        "benefits": [
+          "Competitive compensation with annual bonus",
+          "Full medical, dental, and vision coverage",
+          "Research budget for conferences and publications",
+          "Hybrid work with Austin HQ office access",
+          "401(k) with employer match"
+        ]
+      }
+    },
+    {
+      "id": "job_006",
+      "meta": {
+        "createdAt": "2025-04-10T08:00:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "DevOps Engineer",
+        "company": "CloudSystems Ltd.",
+        "role": "Engineering",
+        "type": "Full-Time",
+        "location": "Remote"
+      },
+      "requirements": {
+        "experience": "3-5 years",
+        "skills": ["Kubernetes", "Terraform", "CI/CD", "AWS", "Linux"],
+        "education": "B.Sc. in Computer Science or equivalent practical experience"
+      },
+      "compensation": {
+        "salary": 125000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "CloudSystems is hiring a DevOps Engineer to own our cloud infrastructure across AWS regions. You will design and automate CI/CD pipelines, manage Kubernetes clusters, and champion infrastructure-as-code practices across our 30-person engineering org.",
+        "responsibilities": [
+          "Design, build, and manage Kubernetes clusters on AWS EKS",
+          "Automate infrastructure provisioning with Terraform",
+          "Build and maintain CI/CD pipelines using GitHub Actions",
+          "Monitor system health and respond to production incidents",
+          "Drive security and compliance improvements in the cloud environment"
+        ],
+        "benefits": [
+          "Fully remote with flexible timezone",
+          "Premium health and dental insurance",
+          "Monthly internet and equipment stipend",
+          "Certification reimbursement (AWS, CKA, etc.)",
+          "Company equity grant with 4-year vesting"
+        ]
+      }
+    },
+    {
+      "id": "job_007",
+      "meta": {
+        "createdAt": "2025-04-11T10:00:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "Mobile Developer (React Native)",
+        "company": "AppWorks Studio",
+        "role": "Engineering",
+        "type": "Full-Time",
+        "location": "Chicago, IL"
+      },
+      "requirements": {
+        "experience": "1-3 years",
+        "skills": ["React Native", "JavaScript", "Redux", "iOS", "Android"],
+        "education": "B.Sc. in Computer Science or equivalent"
+      },
+      "compensation": {
+        "salary": 100000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "AppWorks Studio is looking for a Mobile Developer to build and maintain our consumer iOS and Android apps using React Native. You'll collaborate with designers on smooth animations, integrate third-party SDKs, and publish app updates on a two-week release cadence.",
+        "responsibilities": [
+          "Build new screens and features in React Native for iOS and Android",
+          "Integrate REST APIs and third-party SDKs",
+          "Debug and resolve performance issues on both platforms",
+          "Write automated tests using Jest and Detox",
+          "Collaborate with designers to implement polished UI transitions"
+        ],
+        "benefits": [
+          "Hybrid office in Chicago's West Loop",
+          "Comprehensive health benefits from day one",
+          "Latest MacBook and phone devices for development",
+          "Annual team off-site",
+          "Casual dress code and dog-friendly office"
+        ]
+      }
+    },
+    {
+      "id": "job_008",
+      "meta": {
+        "createdAt": "2025-04-12T09:00:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "Marketing Manager",
+        "company": "BrandBoost Agency",
+        "role": "Marketing",
+        "type": "Full-Time",
+        "location": "Los Angeles, CA"
+      },
+      "requirements": {
+        "experience": "3-5 years",
+        "skills": ["SEO", "Google Ads", "Content Strategy", "Analytics", "Email Marketing"],
+        "education": "B.A. in Marketing, Communications, or related field"
+      },
+      "compensation": {
+        "salary": 95000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "BrandBoost is seeking an experienced Marketing Manager to lead integrated digital campaigns for our portfolio of consumer brand clients. You'll manage paid media budgets, drive organic growth strategies, and report on campaign ROI to client stakeholders.",
+        "responsibilities": [
+          "Plan and execute multi-channel digital marketing campaigns",
+          "Manage Google Ads and Meta Ads budgets totalling $500K/month",
+          "Develop and execute SEO and content marketing strategies",
+          "Analyze campaign performance and present insights to clients",
+          "Mentor a team of two junior marketers"
+        ],
+        "benefits": [
+          "Competitive salary with performance bonus",
+          "Full health and dental benefits",
+          "Hybrid work (3 days on-site in LA)",
+          "Annual marketing conference attendance",
+          "Employee wellness program and gym subsidy"
+        ]
+      }
+    },
+    {
+      "id": "job_009",
+      "meta": {
+        "createdAt": "2025-04-14T08:30:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "Junior Web Developer",
+        "company": "StartupXYZ",
+        "role": "Engineering",
+        "type": "Full-Time",
+        "location": "Boston, MA"
+      },
+      "requirements": {
+        "experience": "0-1 years",
+        "skills": ["HTML", "CSS", "JavaScript", "React", "Git"],
+        "education": "B.Sc. in Computer Science or coding bootcamp graduate"
+      },
+      "compensation": {
+        "salary": 70000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "StartupXYZ is looking for a motivated Junior Web Developer to join our small but mighty engineering team. You'll build features in React, squash bugs, and grow quickly in a collaborative environment where everyone ships code on day one.",
+        "responsibilities": [
+          "Build and maintain React components across the main product",
+          "Fix bugs and improve frontend performance",
+          "Write clean, well-tested code following team standards",
+          "Participate in daily standups and sprint planning",
+          "Learn from senior engineers through pair programming and code review"
+        ],
+        "benefits": [
+          "Entry-level salary with fast growth trajectory",
+          "Health insurance from day one",
+          "Structured mentorship program",
+          "Flexible hours with early-close Fridays",
+          "Free snacks and team lunches twice a week"
+        ]
+      }
+    },
+    {
+      "id": "job_010",
+      "meta": {
+        "createdAt": "2025-04-15T11:00:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "Software Engineering Intern",
+        "company": "BigTech Corp",
+        "role": "Engineering",
+        "type": "Internship",
+        "location": "Seattle, WA"
+      },
+      "requirements": {
+        "experience": "0-1 years",
+        "skills": ["Python", "Data Structures", "Algorithms", "Git", "Linux"],
+        "education": "Currently pursuing B.Sc./M.Sc. in Computer Science"
+      },
+      "compensation": {
+        "salary": 45000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "BigTech Corp is offering a 12-week summer internship for aspiring software engineers. Interns will be embedded on a product team, work on real production code, and present their project to senior engineers at the end of the program.",
+        "responsibilities": [
+          "Complete a scoped engineering project with real business impact",
+          "Write production-quality code with tests and documentation",
+          "Attend weekly learning sessions on system design and engineering practices",
+          "Collaborate with your team via code reviews and standups",
+          "Present your internship project to a panel of senior engineers"
+        ],
+        "benefits": [
+          "Competitive hourly rate equivalent to $45K/year",
+          "Company housing assistance or relocation stipend",
+          "Full access to on-site amenities and cafeteria",
+          "Mentorship from senior and staff engineers",
+          "Return offer consideration for full-time roles"
+        ]
+      }
+    },
+    {
+      "id": "job_011",
+      "meta": {
+        "createdAt": "2025-04-16T09:00:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "Data Analyst",
+        "company": "RetailCo",
+        "role": "Data & Analytics",
+        "type": "Full-Time",
+        "location": "Dallas, TX"
+      },
+      "requirements": {
+        "experience": "1-3 years",
+        "skills": ["SQL", "Excel", "Tableau", "Python", "Business Intelligence"],
+        "education": "B.Sc. in Statistics, Mathematics, or Business Analytics"
+      },
+      "compensation": {
+        "salary": 80000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "RetailCo is hiring a Data Analyst to help our merchandising and operations teams make data-driven decisions. You'll build Tableau dashboards, run ad-hoc SQL queries, and present weekly insights that directly influence purchasing and inventory strategies.",
+        "responsibilities": [
+          "Build and maintain Tableau dashboards for key business metrics",
+          "Write complex SQL queries against the data warehouse",
+          "Perform ad-hoc analysis for marketing, operations, and finance teams",
+          "Create weekly and monthly reporting decks for leadership",
+          "Identify data quality issues and collaborate with engineering to fix them"
+        ],
+        "benefits": [
+          "Competitive salary with annual performance review",
+          "Full health, dental, and vision coverage",
+          "Hybrid work (Dallas HQ 3 days/week)",
+          "Employee retail discount",
+          "Tuition reimbursement up to $5,000/year"
+        ]
+      }
+    },
+    {
+      "id": "job_012",
+      "meta": {
+        "createdAt": "2025-04-17T08:00:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "Cybersecurity Analyst",
+        "company": "SecureNet Systems",
+        "role": "Security",
+        "type": "Full-Time",
+        "location": "Washington, DC"
+      },
+      "requirements": {
+        "experience": "3-5 years",
+        "skills": ["SIEM", "Incident Response", "Network Security", "NIST Framework", "Python"],
+        "education": "B.Sc. in Cybersecurity, IT, or CompTIA Security+ / CISSP certified"
+      },
+      "compensation": {
+        "salary": 115000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "SecureNet Systems is looking for a Cybersecurity Analyst to join our SOC team protecting critical government contractor infrastructure. You will monitor for threats, lead incident response workflows, and drive compliance with NIST and FedRAMP controls.",
+        "responsibilities": [
+          "Monitor SIEM alerts and investigate security incidents",
+          "Lead end-to-end incident response and post-mortem reporting",
+          "Conduct vulnerability assessments and penetration test coordination",
+          "Maintain compliance documentation for NIST 800-53 and FedRAMP",
+          "Deliver security awareness training to internal staff"
+        ],
+        "benefits": [
+          "Above-market salary with clearance premium",
+          "Full federal health benefits package",
+          "Certification reimbursement (CISSP, CEH, CISM)",
+          "Hybrid schedule after initial onboarding",
+          "Pension and retirement savings plan"
+        ]
+      }
+    },
+    {
+      "id": "job_013",
+      "meta": {
+        "createdAt": "2025-04-18T10:00:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "Machine Learning Engineer",
+        "company": "AILabs Research",
+        "role": "Data & Analytics",
+        "type": "Full-Time",
+        "location": "San Francisco, CA"
+      },
+      "requirements": {
+        "experience": "3-5 years",
+        "skills": ["PyTorch", "Python", "MLOps", "CUDA", "Distributed Training"],
+        "education": "M.Sc. or Ph.D. in Machine Learning, Computer Science, or related field"
+      },
+      "compensation": {
+        "salary": 165000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "AILabs Research is pushing the frontier of large-scale model training and seeks an ML Engineer to help build our next-generation foundation models. You'll train models on GPU clusters, design evaluation benchmarks, and work alongside world-class AI researchers.",
+        "responsibilities": [
+          "Design and implement ML training pipelines for large language models",
+          "Optimize distributed training across multi-GPU and multi-node setups",
+          "Build MLOps infrastructure for experiment tracking and model versioning",
+          "Collaborate with research scientists to implement novel architectures",
+          "Develop evaluation benchmarks and interpret model capabilities"
+        ],
+        "benefits": [
+          "Top-of-market compensation plus equity",
+          "Full medical, dental, vision, and mental health coverage",
+          "GPU compute credits for personal research projects",
+          "Annual AI research conference sponsorship",
+          "Catered meals and on-site gym"
+        ]
+      }
+    },
+    {
+      "id": "job_014",
+      "meta": {
+        "createdAt": "2025-04-19T09:00:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "Technical Writer",
+        "company": "DocPro Inc.",
+        "role": "Content",
+        "type": "Part-Time",
+        "location": "Remote"
+      },
+      "requirements": {
+        "experience": "1-3 years",
+        "skills": ["Technical Writing", "Markdown", "API Documentation", "Git", "Confluence"],
+        "education": "B.A. in English, Journalism, or Computer Science"
+      },
+      "compensation": {
+        "salary": 55000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "DocPro is seeking a part-time Technical Writer to own developer documentation for our REST API platform. You'll write conceptual guides, API references, and tutorials in close collaboration with engineering and product teams.",
+        "responsibilities": [
+          "Write and maintain API reference documentation and developer guides",
+          "Create step-by-step tutorials and quick-start guides",
+          "Gather information from engineers and translate it for developer audiences",
+          "Maintain documentation structure and versioning in Git",
+          "Review docs for accuracy after each product release"
+        ],
+        "benefits": [
+          "Fully remote, flexible 20-hour work week",
+          "Competitive part-time rate",
+          "Access to all company tools and software",
+          "Potential to transition to full-time",
+          "Collaborative, async-first work culture"
+        ]
+      }
+    },
+    {
+      "id": "job_015",
+      "meta": {
+        "createdAt": "2025-04-20T10:30:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "QA Engineer",
+        "company": "QualitySoft Technologies",
+        "role": "Engineering",
+        "type": "Full-Time",
+        "location": "Atlanta, GA"
+      },
+      "requirements": {
+        "experience": "1-3 years",
+        "skills": ["Selenium", "Cypress", "SQL", "API Testing", "JIRA"],
+        "education": "B.Sc. in Computer Science or equivalent"
+      },
+      "compensation": {
+        "salary": 85000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "QualitySoft is looking for a QA Engineer to join our test automation team and ensure reliable software delivery. You will own test plans for new features, build Cypress E2E test suites, and champion quality standards across the engineering org.",
+        "responsibilities": [
+          "Write and maintain automated E2E tests using Cypress",
+          "Create detailed test plans and test cases for feature releases",
+          "Perform exploratory, regression, and API testing",
+          "Log, track, and verify bugs using JIRA",
+          "Work with developers to diagnose and reproduce reported issues"
+        ],
+        "benefits": [
+          "Health, dental, and vision insurance",
+          "Hybrid work (Atlanta office 2 days/week)",
+          "Annual QA and testing conference budget",
+          "401(k) with company match",
+          "Paid parental leave (12 weeks)"
+        ]
+      }
+    },
+    {
+      "id": "job_016",
+      "meta": {
+        "createdAt": "2025-04-21T09:00:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "Sales Engineer",
+        "company": "SalesPro Technologies",
+        "role": "Sales",
+        "type": "Full-Time",
+        "location": "Denver, CO"
+      },
+      "requirements": {
+        "experience": "3-5 years",
+        "skills": ["SaaS Sales", "Technical Demos", "CRM", "SQL", "APIs"],
+        "education": "B.Sc. in Engineering, Computer Science, or Business"
+      },
+      "compensation": {
+        "salary": 115000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "SalesPro is hiring a Sales Engineer to bridge the gap between our technical product and enterprise buyers. You'll lead product demos, answer deep technical questions during the sales cycle, and craft custom proof-of-concept solutions that accelerate deal closure.",
+        "responsibilities": [
+          "Deliver engaging product demos to technical and executive audiences",
+          "Answer detailed technical questions during the sales process",
+          "Build custom proof-of-concept integrations for strategic prospects",
+          "Collaborate with account executives on deal strategy",
+          "Provide feedback from prospects to product and engineering teams"
+        ],
+        "benefits": [
+          "Base salary plus uncapped commission",
+          "Full health and wellness benefits",
+          "Annual sales summit and incentive trip",
+          "Company car allowance or travel reimbursement",
+          "Equity stake in a pre-IPO company"
+        ]
+      }
+    },
+    {
+      "id": "job_017",
+      "meta": {
+        "createdAt": "2025-04-22T08:30:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "Full Stack Developer",
+        "company": "WebAgency Digital",
+        "role": "Engineering",
+        "type": "Contract",
+        "location": "Remote"
+      },
+      "requirements": {
+        "experience": "3-5 years",
+        "skills": ["React", "Node.js", "MongoDB", "REST APIs", "Tailwind CSS"],
+        "education": "B.Sc. in Computer Science or demonstrated portfolio"
+      },
+      "compensation": {
+        "salary": 110000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "WebAgency Digital is looking for a contract Full Stack Developer for a 6-month engagement (with potential extension) to build client-facing web applications. You'll own feature development across the stack for 2-3 concurrent client projects.",
+        "responsibilities": [
+          "Develop responsive React frontends and Node.js backends",
+          "Design and implement MongoDB schemas and REST APIs",
+          "Integrate third-party services (Stripe, Twilio, etc.)",
+          "Deliver clean, documented code on a weekly cadence",
+          "Communicate progress and blockers with the project manager"
+        ],
+        "benefits": [
+          "Competitive contract rate paid bi-weekly",
+          "Fully remote with flexible hours",
+          "Opportunity for contract-to-hire conversion",
+          "Work across varied, interesting client industries",
+          "Collaborative team with no micromanagement"
+        ]
+      }
+    },
+    {
+      "id": "job_018",
+      "meta": {
+        "createdAt": "2025-04-23T10:00:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "HR Manager",
+        "company": "PeopleFirst Corp",
+        "role": "Human Resources",
+        "type": "Full-Time",
+        "location": "Phoenix, AZ"
+      },
+      "requirements": {
+        "experience": "3-5 years",
+        "skills": ["Talent Acquisition", "HRIS", "Employee Relations", "Compensation & Benefits", "Onboarding"],
+        "education": "B.Sc. in Human Resources Management or Business Administration"
+      },
+      "compensation": {
+        "salary": 90000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "PeopleFirst Corp is hiring an HR Manager to oversee people operations for a 200-person organization. You'll manage recruiting pipelines, run onboarding programs, handle employee relations cases, and ensure compensation and benefits remain competitive.",
+        "responsibilities": [
+          "Lead full-cycle recruiting for technical and non-technical roles",
+          "Design and deliver structured onboarding programs for new hires",
+          "Manage HRIS data and generate workforce analytics reports",
+          "Handle employee relations issues and disciplinary processes",
+          "Benchmark and administer compensation and benefits programs"
+        ],
+        "benefits": [
+          "Comprehensive health, dental, and vision benefits",
+          "SHRM certification reimbursement",
+          "Hybrid work arrangement",
+          "Generous PTO and sick leave policy",
+          "Annual HR leadership summit"
+        ]
+      }
+    },
+    {
+      "id": "job_019",
+      "meta": {
+        "createdAt": "2025-04-24T09:30:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "Business Analyst",
+        "company": "ConsultCorp Advisory",
+        "role": "Business Operations",
+        "type": "Full-Time",
+        "location": "Miami, FL"
+      },
+      "requirements": {
+        "experience": "1-3 years",
+        "skills": ["Requirements Gathering", "Process Mapping", "SQL", "Excel", "Stakeholder Management"],
+        "education": "B.Sc. in Business, Finance, or Information Systems"
+      },
+      "compensation": {
+        "salary": 85000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "ConsultCorp Advisory is seeking a Business Analyst to join our financial services practice. You'll gather and document requirements from banking clients, map current-state processes, and produce detailed specs that development teams use to build solutions.",
+        "responsibilities": [
+          "Elicit and document business requirements through stakeholder interviews",
+          "Create process flow diagrams and gap analysis documentation",
+          "Translate business requirements into functional specifications",
+          "Support UAT by creating test cases and tracking defects",
+          "Facilitate requirement review sessions with clients and developers"
+        ],
+        "benefits": [
+          "Competitive salary with merit-based increases",
+          "Health and dental insurance from day one",
+          "Travel reimbursement for client site visits",
+          "Sponsored training for PMP or CBAP certifications",
+          "Clear promotion path to Senior BA and Lead Consultant"
+        ]
+      }
+    },
+    {
+      "id": "job_020",
+      "meta": {
+        "createdAt": "2025-04-25T10:00:00.000Z",
+        "createdBy": "admin@jobportal.com",
+        "status": "active"
+      },
+      "jobDetails": {
+        "title": "Cloud Architect",
+        "company": "CloudPeak Solutions",
+        "role": "Engineering",
+        "type": "Full-Time",
+        "location": "Remote"
+      },
+      "requirements": {
+        "experience": "5+ years",
+        "skills": ["AWS", "Azure", "Terraform", "Microservices", "Cost Optimization"],
+        "education": "B.Sc. in Computer Science or AWS Solutions Architect Professional certified"
+      },
+      "compensation": {
+        "salary": 170000,
+        "currency": "USD",
+        "period": "Annual"
+      },
+      "description": {
+        "summary": "CloudPeak Solutions is looking for a Cloud Architect to lead our enterprise cloud strategy and define infrastructure standards for a 150-person engineering organization. You'll design multi-region architectures on AWS and Azure, drive FinOps initiatives, and mentor platform engineers.",
+        "responsibilities": [
+          "Design and document scalable cloud architectures for enterprise workloads",
+          "Lead cloud migration projects from on-premises to AWS and Azure",
+          "Define infrastructure standards, security baselines, and IaC templates",
+          "Identify and execute cost optimization opportunities across cloud spend",
+          "Mentor and upskill a team of 5 platform and infrastructure engineers"
+        ],
+        "benefits": [
+          "Fully remote with flexible schedule",
+          "Top-tier compensation and equity",
+          "Full health, dental, and vision coverage",
+          "Annual cloud certification budget ($5,000)",
+          "30 days PTO plus company holidays"
+        ]
+      }
+    }
+  ]
+}
