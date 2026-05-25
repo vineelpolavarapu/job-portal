@@ -583,15 +583,16 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition: box-shadow 0.12s ease-out, transform 0.12s ease-out;
   cursor: pointer;
-  border-top: 3px solid transparent;  /* colored accent on hover */
 }
 
 .job-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-3px);
-  border-top-color: var(--primary);   /* reveals blue top border on hover */
+  /* Minimal glow emanating evenly from all four sides (0 offset = symmetric).
+     First layer is a crisp 1px ring, second is the soft halo. */
+  box-shadow: 0 0 0 1px rgba(14, 165, 233, 0.40),
+              0 0 14px 2px rgba(14, 165, 233, 0.35);
+  transform: translateY(-2px);
 }
 
 /* Top row: title + type badge */
